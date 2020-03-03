@@ -6,18 +6,20 @@ let rl = readline.createInterface({
 });
 let writeStream = fs.createWriteStream('result.csv');
 
-// let line_no = 0;
 let item_no = 0;
 
 let infoItem = [""];
 rl.on('line', function(line) {
-    // line_no++;
     // check new item
     if(line.indexOf("Info 1:") == 0 && item_no > 0){
         // new item
         console.log("comment1");
-        writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` + 
-        `${infoItem[3]}:${infoItem[8]}:${infoItem[11]}:${infoItem[10]}:CANADA:${infoItem[12]}:${infoItem[0]}\n`, 'utf-8');
+        if(infoItem[8] != "")
+            writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` + 
+            `${infoItem[3]}:${infoItem[8]}:${infoItem[11]}:${infoItem[10]}:CANADA:${infoItem[12]}:${infoItem[0]}\n`, 'utf-8');
+        else
+            writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` + 
+            `${infoItem[3]}:CANADA:${infoItem[0]}\n`, 'utf-8');
         infoItem = ["","","","","","","","","","","","",""];
     }
     if(line.indexOf("Info") == 0){
@@ -32,16 +34,18 @@ rl.on('line', function(line) {
 
 // end
 rl.on('close', function(line) {
-    // console.log('Total lines : ' + line_no);
     console.log("end");
     for(let i=0; i < 13; i ++)
         console.log(infoItem[i]);
-    writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` +
-    `${infoItem[3]}:${infoItem[8]}:${infoItem[11]}:${infoItem[10]}:CANADA:${infoItem[12]}:${infoItem[0]}`, 'utf-8');
-    writeStream.end();
+    if(infoItem[8] != "")
+        writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` + 
+        `${infoItem[3]}:${infoItem[8]}:${infoItem[11]}:${infoItem[10]}:CANADA:${infoItem[12]}:${infoItem[0]}`, 'utf-8');
+    else
+        writeStream.write(`${infoItem[5]}:${infoItem[6]}:${infoItem[7]}:${infoItem[2]} ` + 
+        `${infoItem[3]}:CANADA:${infoItem[0]}`, 'utf-8');
 });
 
 writeStream.on('finish', () => {
-    // console.log('wrote all data to file');
+
 });
 
