@@ -1,7 +1,7 @@
 # formatting-with-js-node-
 This is node.js project (Upwork)
 
-===============#INFO#===============
+==============='#'INFO#===============
 Info 1: aaaa
 Info 2: bbbb
 Info 3: cccc
