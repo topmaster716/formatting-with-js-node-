@@ -23,8 +23,8 @@ rl.on('line', function (line) {
             let itemStr = line.slice(line.indexOf(":") + 2, line.length);
             itemStr = itemStr.replace(/\s/g, "");
             V[keyIndex - 1] = itemStr.replace("/", ":");
-            console.log(`infoStr[${keyIndex-1}] = ${line.slice(0, line.indexOf(":"))}`);
-            console.log(`V[${keyIndex-1}] = ${itemStr.replace("/", ":")}`);
+            // console.log(`infoStr[${keyIndex-1}] = ${line.slice(0, line.indexOf(":"))}`);
+            // console.log(`V[${keyIndex-1}] = ${itemStr.replace("/", ":")}`);
             if (keyIndex == 13) {
                 isKeySet = true;
                 itemCount++;
@@ -37,7 +37,7 @@ rl.on('line', function (line) {
         // check new item
         if (infoStr.indexOf(line.slice(0, line.indexOf(":"))) == 0 && itemCount > 1) {
             // new item
-            console.log(`first comm + ${line}`);
+            // console.log(`first comm + ${line}`);
             if (V[8] != "")
                 writeStream.write(`${V[5]}:${V[6]}:${V[7]}:${V[2]} ` +
                     `${V[3]}:${V[8]}:${V[11]}:${V[10]}:CANADA:${V[12]}:${V[0]}\n`, 'utf-8');
@@ -49,13 +49,13 @@ rl.on('line', function (line) {
 
         if (line.indexOf(":") > 0) {
             let infoIndx = infoStr.indexOf(line.slice(0, line.indexOf(":")));
-            console.log(`index = ${infoIndx}`);
+            // console.log(`index = ${infoIndx}`);
             if (infoIndx >= 0) {
 
                 let itemStr = line.slice(line.indexOf(":") + 2, line.length);
                 itemStr = itemStr.replace(/\s/g, "");
                 V[infoIndx] = itemStr.replace("/", ":");
-                console.log(V[infoIndx]);
+                // console.log(V[infoIndx]);
                 if (infoIndx == 7) itemCount++;
             }
         }
